@@ -1,0 +1,21 @@
+storage:
+  storage_path: /qdrant/storage
+  
+  # Настройки производительности
+  performance:
+    max_search_requests: 200
+    max_optimization_threads: 4
+    max_indexing_threads: 4
+    
+  # Настройки WAL (Write-Ahead Log)
+  wal:
+    wal_capacity_mb: 32
+    wal_segments_ahead: 2
+    
+  # Настройки снапшотов
+  snapshots:
+    snapshots_path: /qdrant/snapshots
+    
+  # Настройки кэша
+  cache:
+    cache_size_mb: 1024

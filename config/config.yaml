@@ -1,0 +1,23 @@
+# config/config.yaml
+service:
+  host: 0.0.0.0
+  http_port: 6333
+  grpc_port: 6334
+
+storage:
+  # Путь к данным
+  storage_path: /qdrant/storage
+  
+  # Настройки производительности
+  performance:
+    max_search_requests: 100
+    max_optimization_threads: 2
+    
+  # Настройки индексации
+  hnsw_config:
+    m: 16
+    ef_construct: 100
+    full_scan_threshold: 10000
+
+# Настройки логирования
+log_level: INFO

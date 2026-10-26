@@ -1,0 +1,30 @@
+# docker-compose.storage.yml
+
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.7.4
+    container_name: qdrant-storage
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_storage:/qdrant/storage
+      - ./config/storage.yaml:/qdrant/config/storage.yaml
+    environment:
+      - QDRANT__STORAGE__PERFORMANCE__MAX_SEARCH_REQUESTS=200
+      - QDRANT__STORAGE__PERFORMANCE__MAX_OPTIMIZATION_THREADS=4
+    sysctls:
+      - vm.max_map_count=262144
+      - fs.file-max=65536
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: unless-stopped
+
+volumes:
+  qdrant_storage:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind,noatime,nodiratime
+      device: /opt/qdrant/storage
